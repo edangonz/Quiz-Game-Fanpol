@@ -1,0 +1,26 @@
+.container-caracter{
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+
+.caracter{
+    height: 400px;
+    background-size: cover;
+    border-radius: 0.5rem;
+    
+    padding: 0.5rem;
+
+    position: relative;
+
+    .cover{
+        padding: 0.5rem;
+        background-color: rgba($color: #ffffff, $alpha: .8);
+    }
+
+    i{
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        cursor: pointer;
+    }
+}

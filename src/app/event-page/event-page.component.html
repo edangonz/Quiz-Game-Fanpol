@@ -1,0 +1,32 @@
+<div class="background"
+    *ngIf="ManageService.current_quiz as quiz"
+    [style.background-image]="getSatanizeURL(quiz.category.image_background)">
+    
+    <ng-container *ngIf="has_name">
+        <div class="anwers">
+            <app-anwers-container [is_event]="true"></app-anwers-container>
+        </div>
+
+        <div class="caracter">
+            <app-caracter-container></app-caracter-container>
+        </div>
+
+        <div class="questions">
+            <app-questions-container></app-questions-container>
+        </div>
+
+        <app-could-container [is_event]="true"></app-could-container>
+    </ng-container>
+
+    <ng-container *ngIf="!has_name">
+        <div class="main-card center">
+            <div class="container card-fanpol">
+                <div class="center colunm">
+                    <h2>Ingrese su nombre</h2>
+                    <input type="text" class="form-control" [(ngModel)]="nick_name">
+                    <button class="btn btnfanpol-default" (click)="saveName()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

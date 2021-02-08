@@ -1,0 +1,18 @@
+<div class="background"
+    *ngIf="ManageService.current_quiz as quiz"
+    [style.background-image]="getSatanizeURL(quiz.category.image_background)">
+    
+    <div class="anwers">
+        <app-anwers-container></app-anwers-container>
+    </div>
+
+    <div class="caracter">
+        <app-caracter-container></app-caracter-container>
+    </div>
+
+    <div class="questions">
+        <app-questions-container></app-questions-container>
+    </div>
+
+    <app-could-container></app-could-container>
+</div> 

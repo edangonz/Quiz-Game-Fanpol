@@ -1,0 +1,13 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add{
+    cursor: pointer;
+}
+
+.container{
+    max-height: 85vh;
+    overflow: scroll;
+}

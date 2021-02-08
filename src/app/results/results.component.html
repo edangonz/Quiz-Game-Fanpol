@@ -1,0 +1,22 @@
+<div class="container card-fanpol">
+    <h2 class="title-name">Resultados</h2>
+    <ng-container *ngIf="!is_event">
+        <div class="rowflex" *ngFor="let question of questions">
+            <h3 class="font-normal">{{question.question}}</h3>
+            <i *ngIf="question.correct_answer == question.your_answer"
+                class="fas fa-check-circle icon-answers" style="color: var(--green);"></i>
+            <i *ngIf="question.correct_answer != question.your_answer"
+                class="fas fa-times-circle icon-answers" style="color: var(--red);"></i>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="is_event">
+        <div class="center">
+            <h2 class="font-normal">Respuestas : {{ count_correct_anwers + '/' + questions.length}}</h2>
+        </div>
+    </ng-container>
+    <div class="center colunm">
+        <button class="btn btnfanpol-default" (click)="restarGame()">Reintentar</button>
+        <button class="btn btnfanpol-default" (click)="exitQuiz()">Salir</button>
+    </div>
+</div>

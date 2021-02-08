@@ -1,0 +1,68 @@
+<nav ngbNav #nav="ngbNav" class="nav-tabs">
+    <ng-container ngbNavItem>
+        <a ngbNavLink>Eventos</a>
+        <ng-template ngbNavContent>
+            <ng-container *ngIf="(current_event$ | async) as event">
+                <div class="container card">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="center colunm">
+                                <h2>{{ event.name_event }}</h2>
+                                <ng-container *ngIf="!event.state; else current">
+                                    <button class="btnfanpol btnfanpol-default" (click)="changeState(event.state)">Iniciar</button>
+                                </ng-container>
+                                <ng-template #current>
+                                    <aside class="time">
+                                        <i class="far fa-clock"></i>
+                                    </aside>
+                                    <button class="btnfanpol btnfanpol-default" (click)="changeState(event.state)">Pausar</button>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="center colunm">
+                                <h2>Ganadores</h2>
+                                <ul>
+                                    <li *ngFor="let e of event.winner">
+                                        {{ e }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-12 center">
+                            <button class="btnfanpol btnfanpol-incorrect" (click)="close()">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!current_event$">
+                <div class="container" *ngIf="EventService.event$ | async as events">
+                    <div class="row">
+                        <div *ngFor="let event of events" class="card col-12 col-sm-6 col-md-4">
+                            <div class="row">
+                                <div class="col-8">
+                                    <span>{{ event.name_event.charAt(0).toUpperCase() + event.name_event.slice(1)}}</span>
+                                    <i class="fas fa-edit" [routerLink]="[event.id_event]"></i>
+                                </div>
+                                <div class="col-4" *ngIf="event.state">
+                                    <aside class="time">
+                                        <i class="far fa-clock"></i>
+                                    </aside>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </ng-container>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
+        <a ngbNavLink>Nuevo</a>
+        <ng-template ngbNavContent>
+            <app-new-event></app-new-event>
+        </ng-template>
+    </ng-container>
+</nav>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

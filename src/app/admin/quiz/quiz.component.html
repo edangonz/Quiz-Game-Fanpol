@@ -1,0 +1,28 @@
+<nav ngbNav #nav="ngbNav" class="nav-tabs">
+    <ng-container ngbNavItem>
+      <a ngbNavLink>{{ (in_update)? 'Actualizar' : 'Nuevo'}}</a>
+      <ng-template ngbNavContent>
+          <app-new-quiz></app-new-quiz>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem *ngIf="!in_update">
+      <a ngbNavLink>Quiz</a>
+      <ng-template ngbNavContent>
+          <div class="container" *ngIf="quiz_service.list_quiz$ | async as quizes">
+              <form class="form" [formGroup]="filter_form" (ngSubmit)="onSubmit(filter_form.value)">
+                  <label for="name">Nombre:</label>
+                  <input type="text"  formControlName="name" id="name" required>
+                  <input type="submit" value="Filtrar" [disabled]="block_button">
+              </form>
+              <div class="row">
+                  <div *ngFor="let quiz of quizes" class="col-6">
+                      <span>{{ quiz.name_quiz.charAt(0).toUpperCase() + quiz.name_quiz.slice(1)}}</span>
+                      <i class="fas fa-edit" [routerLink]="[quiz.id_quiz]"></i>
+                  </div>
+              </div>    
+          </div>
+      </ng-template>
+    </ng-container>
+  </nav>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>

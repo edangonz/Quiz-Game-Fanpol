@@ -1,0 +1,15 @@
+<div class="container">
+    <form *ngIf="event_form" class="form" [formGroup]="event_form" (ngSubmit)="onSubmit(event_form.value)">
+        <label for="name">Name:</label>
+        <input type="text"  formControlName="name" id="name" required>
+
+        <ng-container *ngIf="quiz_service.list_quiz$ | async as quizes">
+            <label for="id_quiz">Quiz:</label>
+            <select formControlName="id_quiz" id="id_quiz" required>
+                <option *ngFor="let quiz of quizes" [value]="quiz.id_quiz">{{ quiz.name_quiz }}</option>
+            </select>
+        </ng-container>
+
+        <input type="submit" value="Crear" [disabled]="blockButton">
+    </form>
+</div>

@@ -1,0 +1,14 @@
+<aside class="container-question">
+    <div @moveElement
+        *ngIf="ManageService.is_answering"
+        class="question">
+        <div class="container">
+        <div class="rowflex">
+            <img class="icon" src="../../../assets/images/icon.png" alt="icon">
+            <span class="title-name">{{ ManageService.current_quiz.caracter.name_caracter }}</span>
+        </div>
+        <span class="text">{{ ManageService.current_question.question }}</span>
+        <span class="font-small">{{ ManageService.index + '/' + ManageService.current_quiz.questions.length }}</span>
+        </div>
+    </div>
+</aside>

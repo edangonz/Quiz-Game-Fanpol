@@ -1,0 +1,33 @@
+<div class="drop" *ngIf="questions">
+    <ngb-accordion [closeOthers]="true">
+        <ngb-panel *ngFor="let question of questions; let i = index" [id]="'static-'+i" [title]="question.question">
+            <ng-template ngbPanelContent>      
+                <div class="row">
+                    <div class="col-12 form">
+                        <aside class="add" (click)="removeQuestion(i)">-</aside>
+                        
+                        <label [for]="'question'+i">Pregunta:</label>
+                        <input class="form-control" type="text" [(ngModel)]="question.question" [id]="'question'+i">
+                        <label [for]="'message_correct'+i">Mensage correcto:</label>
+                        <input class="form-control" type="text" [(ngModel)]="question.message_correct" [id]="'message_correct'+i">
+                        <label [for]="'message_incorrect'+i">Mensaje incorrecto:</label>
+                        <input class="form-control" type="text" [(ngModel)]="question.message_incorrect" [id]="'message_incorrect'+i">
+                    </div>
+
+                    <div class="col-12 form">
+                        <div>
+                            <label>Respuestas:</label>
+                            <aside class="add" (click)="addAnswer(question.answers)">++</aside>
+                        </div>
+                        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event, question.answers)">
+                            <div class="example-box" *ngFor="let answer of question.answers; let i = index" cdkDrag>
+                                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                                <input class="form-control" type="text" [(ngModel)]="question.answers[i]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>

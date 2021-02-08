@@ -1,0 +1,11 @@
+<span class="navbar-toggler-icon" (click)="toggle()"></span>
+
+<div @showUpMenu *ngIf="seen_menu"  class="div-close top-left" (click)="toggle()"></div>
+<div @showUpLeftMenu *ngIf="seen_menu" class="menu top-left colunm">
+    <a href="" class="item-nav"
+        *ngFor="let item of list_menu"
+        [routerLink]="item.link"
+        [ngClass]="{selected: config_service.current_menu == item.name}"
+        (click)="toggle()"
+    ><i [class]="item.icon"></i> {{ item.name }}</a>
+</div>

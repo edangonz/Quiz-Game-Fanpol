@@ -1,0 +1,58 @@
+.background{
+    background-size: cover;
+
+    display: grid;
+}
+
+.anwers {
+    grid-area: anwers;
+}
+
+.questions {
+    grid-area: questions;
+}
+
+.caracter {
+    grid-area: caracter;
+}
+
+@media (max-width: 992px) {
+    .background {
+        grid-template-areas:
+            'questions'
+            'anwers';
+    }
+
+    .anwers {
+        height: 70vh;
+    }
+    
+    .questions {
+        height: 30vh;
+    }
+    
+    .caracter {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .background {
+        grid-template-areas:
+            'anwers caracter'
+            'questions questions';
+    }
+
+    .anwers {
+        height: 70vh;
+        width: 65vw;
+    }
+    
+    .questions {
+        height: 30vh;
+    }
+    
+    .caracter {
+        height: 70vh;
+    }
+}

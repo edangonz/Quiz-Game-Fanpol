@@ -1,0 +1,80 @@
+.btnfanpol {
+    padding: 6px 12px;
+    margin-bottom: 0;
+
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: none;
+
+    border-radius: 8px;
+}
+
+.btnfanpol:focus, .btnfanpol:active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.btnfanpol:hover, .btnfanpol:focus {
+    text-decoration: none;
+}
+
+.btnfanpol:active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+/* default
+---------------------------- */
+.btnfanpol-default {
+    font-size: 2em;
+    color: white;
+    background-color:var(--sakuratwo);
+}
+
+.btnfanpol-default:focus, .btnfanpol-default:hover {
+    background-color: #E8998E;
+}
+
+.btnfanpol-default:active {
+    background-color: #FFB79C;
+}
+
+/* answers */
+.btnfanpol-answers {
+    background: #FEA8AD;
+    border: 2px solid #FF7179;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    min-width: 80%;
+}
+
+.btnfanpol-answers:focus, .btnfanpol-answers:hover {
+    background-color: #FF7179;
+}
+
+.btnfanpol-answers:active {
+    background-color: #FF7179;
+}
+
+.btnfanpol-correct, .btnfanpol-correct:focus, .btnfanpol-correct:hover, .btnfanpol-correct:active{
+    background-color: var(--green);
+}
+
+.btnfanpol-incorrect, .btnfanpol-incorrect:focus, .btnfanpol-incorrect:hover, .btnfanpol-incorrect:active{
+    background-color: var(--red);
+}

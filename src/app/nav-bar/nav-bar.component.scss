@@ -1,0 +1,42 @@
+.navbar-toggler-icon{
+    cursor: pointer
+}
+
+.top-left{
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.menu{
+    width: 260px;
+    padding-top: 1rem;
+    background-color: #f8f9fa;
+}
+
+.div-close{
+    width: 100vw;
+    background-color: rgba($color: #000000, $alpha: .3);
+}
+
+.item-nav{
+    text-decoration: none;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    width: 100%;
+    color: black;
+
+    &:hover{
+        background-color: rgba($color: #000000, $alpha: .1);
+    }
+
+    i{
+        width: 25px;
+    }
+}
+
+.selected{
+    color: blue;
+}

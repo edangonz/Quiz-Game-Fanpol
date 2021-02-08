@@ -1,0 +1,21 @@
+<div class="could center"
+    *ngIf="!ManageService.is_answering && !ManageService.is_ended">
+    <div @showUpElement class="container-dialg colunm">
+        <span class="font-normal">
+            {{ (ManageService.was_correct)?
+                ManageService.current_question.message_correct:
+                ManageService.current_question.message_incorrect
+            }}
+        </span>
+        <button class="btn btnfanpol-default" (click)="ManageService.nextquestion()">
+            {{ (ManageService.is_ended)? 'Resultados': 'Siguiente' }}
+        </button>
+    </div>
+</div>
+
+<div @showUpElement class="main-card center" *ngIf="ManageService.is_ended">
+    <app-results
+        [questions]="ManageService.current_quiz.questions"
+        [is_event]="is_event"
+    ></app-results>
+</div>

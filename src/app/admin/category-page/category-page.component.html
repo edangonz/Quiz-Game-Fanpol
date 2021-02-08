@@ -1,0 +1,30 @@
+<nav ngbNav #nav="ngbNav" class="nav-tabs">
+  <ng-container ngbNavItem>
+    <a ngbNavLink>{{ (in_update)? 'Actualizar' : 'Nuevo'}}</a>
+    <ng-template ngbNavContent>
+        <app-new-category></app-new-category>
+    </ng-template>
+  </ng-container>
+  <ng-container ngbNavItem *ngIf="!in_update">
+    <a ngbNavLink>Escenarios</a>
+    <ng-template ngbNavContent>
+        <div class="container" *ngIf="category_service.list_categories$ | async as categories">
+            <form class="form" [formGroup]="filter_form" (ngSubmit)="onSubmit(filter_form.value)">
+                <label for="name">Nombre:</label>
+                <input type="text"  formControlName="name" id="name" required>
+                <input type="submit" value="Filtrar" [disabled]="block_button">
+            </form>
+            <div class="row">
+                <div *ngFor="let catego of categories"
+                    [style.background-image]="satanizeBackground(catego.image_background)"
+                    class="category col-6">
+                    <span>{{ catego.name_category.charAt(0).toUpperCase() + catego.name_category.slice(1)}}</span>
+                    <i class="fas fa-edit" [routerLink]="[catego.id_category]"></i>
+                </div>
+            </div>    
+        </div>
+    </ng-template>
+  </ng-container>
+</nav>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

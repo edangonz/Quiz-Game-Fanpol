@@ -1,0 +1,27 @@
+<div class="main center colunm" *ngIf="quiz_service.list_quiz$ | async as quizes">
+    <div @showUpElement class="card-fanpol card-game center colunm">
+        <h2>Escoja el quiz que más le guste</h2>
+
+        <form class="colunm form" (ngSubmit)="onSubmit(form_quiz.value)" [formGroup]="form_quiz">
+            <select class="form-control" formControlName="id_quiz" id="id_quiz" required>
+                <option *ngFor="let quiz of quizes" [value]="quiz.id_quiz">{{ quiz.name_quiz }}</option>
+            </select>
+            <input class="btnfanpol btnfanpol-default" type="submit" value="Comenzar">
+        </form>
+    </div>
+
+    <ng-container *ngIf="event_service.last_event$ | async as event">
+        <div @showUpElement class="card-fanpol card-event center colunm" *ngIf="event.length">
+            <h2>Evento disponible</h2>
+            <input class="btnfanpol btnfanpol-default" type="submit" value="Jugar" [routerLink]="['../event', event[0].id_event]">
+        </div>
+    </ng-container>
+    
+    <div class="author-box">
+        <p class="font-small">
+        <span class="author-pic">Developed: </span>
+        <span class="author-name"><a href="https://github.com/edangonz" target="_blank">edangonz</a></span>
+        <span class="author-bio"> developer frontend</span>
+        </p>
+    </div>
+</div>

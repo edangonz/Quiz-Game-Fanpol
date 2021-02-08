@@ -1,0 +1,17 @@
+<ul class="answers colunm"
+    *ngIf="ManageService.is_answering"
+    [@showUpCollection]="ManageService.current_question.answers.length">
+    <li
+        *ngFor="let item of ManageService.current_question.answers; let i = index"
+        (click)="checkAnswer(item, i)"
+        class="answer">
+        <button
+            [ngClass]="{
+                'btnfanpol-correct': i == is_selected && is_correct && !is_event,
+                'btnfanpol-incorrect': i == is_selected && !is_correct && !is_event,
+                'btnfanpol-selected': i == is_selected && is_event
+            }"
+            class="btnfanpol btnfanpol-answers font-answer"
+        >{{ item }}</button>
+    </li>
+</ul>

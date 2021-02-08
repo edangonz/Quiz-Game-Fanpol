@@ -1,0 +1,37 @@
+<div class="container row">
+    <div class="col-5">
+        <app-caracter-canvas
+            *ngIf="temp_caracter"
+            [temp_caracter]="temp_caracter"
+            face="0"
+            is_editable="true"
+        ></app-caracter-canvas>
+    </div>
+    <div class="col-7">
+        <form *ngIf="caracter_form" class="form" [formGroup]="caracter_form" (ngSubmit)="onSubmit(caracter_form.value)">
+            <label for="name">Name:</label>
+            <input type="text"  formControlName="name" id="name" [attr.disabled]="blockName" required>
+            <label for="background">Personaje:</label>
+            <input type="file" accept=".jpg, .jpeg, .png" formControlName="background" id="background" (change)="changeGround($event, true)" required>
+            
+            <ng-container *ngIf="is_compleje">
+                <label for="face">Cara:</label>
+                <input type="file" accept=".jpg, .jpeg, .png" formControlName="face" id="face" (change)="changeGround($event, false)" required>
+                <label for="correct">Sonido correcto:</label>
+                <input type="file" accept=".mp3" formControlName="correct" id="correct" (change)="changeSound($event, true)" required>
+                <label for="incorrect">Sonico incorrecto:</label>
+                <input type="file" accept=".mp3" formControlName="incorrect" id="incorrect" (change)="changeSound($event, false)" required>
+            </ng-container>
+
+            <input type="submit" [value]="action" [disabled]="blockButton">
+
+            <label for="">¿Usuario complejo?</label>
+            <input value="" type="checkbox" [checked]="is_compleje" (change)="is_compleje = !is_compleje">
+        </form>
+
+        <ng-container *ngIf="is_compleje">
+            <audio [src]="temp_caracter.correct_sound" controls></audio>
+            <audio [src]="temp_caracter.incorrect_sound" controls></audio>
+        </ng-container>
+    </div>
+</div>

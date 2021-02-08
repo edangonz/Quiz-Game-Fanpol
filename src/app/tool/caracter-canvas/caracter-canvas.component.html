@@ -1,0 +1,18 @@
+<div class="example-boundary"
+    [ngStyle]="{width: (size / 2) + 'px', height: size + 'px'}">
+    <div
+        *ngIf="is_editable && image_faces && image_faces.width"
+        [ngStyle]="{
+            width: ((size / 2) * image_faces.width) / (image_caracter.width / 3) + 'px',
+            height: ((size * (image_faces.height / 3)) / image_caracter.height) + 'px'
+        }"
+        class="example-box"
+        cdkDragBoundary=".example-boundary"
+        (cdkDragEnded)="dropped($event)"
+        cdkDrag>
+    </div>
+    <canvas #canvas
+        [width]="size / 2"
+        [height]="size"
+        (window:resize)="resize()"></canvas>
+</div>

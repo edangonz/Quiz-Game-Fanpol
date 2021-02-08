@@ -1,0 +1,24 @@
+.fa-edit {
+    cursor: pointer
+}
+
+.time{
+    font-size: 5rem;
+    color: #FFF1C2;
+}
+    
+.fa-clock{
+    animation: moveIcon 2.5s infinite linear;
+}
+    
+.card{
+    padding: 1.5rem;
+}
+
+@keyframes moveIcon{
+    0%{ transform: rotate(0deg); }
+        
+    50%{ transform: rotate(180deg); }
+        
+    100%{ transform: rotate(360deg); }
+}

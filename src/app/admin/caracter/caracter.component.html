@@ -1,0 +1,31 @@
+<nav ngbNav #nav="ngbNav" class="nav-tabs">
+    <ng-container ngbNavItem>
+      <a ngbNavLink>{{ (in_update)? 'Actualizar' : 'Nuevo'}}</a>
+      <ng-template ngbNavContent>
+          <app-new-caracter></app-new-caracter>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem *ngIf="!in_update">
+      <a ngbNavLink>Personajes</a>
+      <ng-template ngbNavContent>
+          <div class="container" *ngIf="caracter_service.list_caracter$ | async as caracteres">
+              <form class="form" [formGroup]="filter_form" (ngSubmit)="onSubmit(filter_form.value)">
+                  <label for="name">Nombre:</label>
+                  <input type="text"  formControlName="name" id="name" required>
+                  <input type="submit" value="Filtrar" [disabled]="block_button">
+              </form>
+              <div class="row">
+                  <div class="container-caracter col-4" *ngFor="let caracter of caracteres">
+                    <div [style.background-image]="satanizeBackground(caracter.image_caracter)"
+                        class="caracter">
+                        <span class="cover">{{ caracter.name_caracter.charAt(0).toUpperCase() + caracter.name_caracter.slice(1)}}</span>
+                        <i class="fas fa-edit cover" [routerLink]="[caracter.id_caracter]" title="Editar"></i>
+                    </div>
+                    </div>
+              </div>    
+          </div>
+      </ng-template>
+    </ng-container>
+  </nav>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>

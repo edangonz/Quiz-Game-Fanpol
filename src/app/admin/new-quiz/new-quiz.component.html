@@ -1,0 +1,26 @@
+<div class="container">
+    <form *ngIf="quiz_form" class="form" [formGroup]="quiz_form" (ngSubmit)="onSubmit(quiz_form.value)">
+        <label for="name">Name:</label>
+        <input type="text"  formControlName="name" id="name" [attr.disabled]="blockName" required>
+
+        <ng-container *ngIf="category_service.list_categories$ | async as categories">
+            <label for="id_category">Category:</label>
+            <select formControlName="id_category" id="id_category" required>
+                <option *ngFor="let category of categories" [value]="category.id_category">{{ category.name_category }}</option>
+            </select>
+        </ng-container>
+
+        <ng-container *ngIf="caracter_service.list_caracter$ | async as caracteres">
+            <label for="id_caracter">Caracter:</label>
+            <select formControlName="id_caracter" id="id_caracter" required>
+                <option *ngFor="let caracter of caracteres" [value]="caracter.id_caracter">{{ caracter.name_caracter }}</option>
+            </select>
+        </ng-container>
+
+        <app-drag-question [questions]="questions"></app-drag-question>
+
+        <aside class="add" (click)="addQuestion()">+</aside>
+
+        <input type="submit" [value]="action" [disabled]="blockButton">
+    </form>
+</div>
